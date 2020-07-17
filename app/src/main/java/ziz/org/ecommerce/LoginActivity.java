@@ -152,6 +152,7 @@ public class LoginActivity extends AppCompatActivity {
                                 Toast.makeText(LoginActivity.this, "Logged successfullyyy ...", Toast.LENGTH_SHORT).show();
                                 progressBar.dismiss();
                                 Intent intent = new Intent(LoginActivity.this, HomeActivity.class);
+                                Prevalent.currentOnLineUser = usersData;
                                 startActivity(intent);
                             }
                         }else {

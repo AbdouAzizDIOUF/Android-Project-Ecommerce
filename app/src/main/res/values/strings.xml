@@ -34,4 +34,6 @@
     <string name="product_name">Product Name…</string>
     <string name="open">open</string>
     <string name="close">close</string>
+    <string name="user_name">user name</string>
+    <string name="product_quantity">Product Quantity</string>
 </resources>

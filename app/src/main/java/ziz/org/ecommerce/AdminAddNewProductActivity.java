@@ -70,7 +70,11 @@ public class AdminAddNewProductActivity extends AppCompatActivity {
         productStorageReference = FirebaseStorage.getInstance().getReference().child("Product Images");
         productDatabaseReference = FirebaseDatabase.getInstance().getReference().child("Products");
 
-        this.init();
+        addNewProductButton = (Button) findViewById(R.id.add_new_product);
+        inputProductImage = (ImageView) findViewById(R.id.select_product_image);
+        inputProductName = (EditText) findViewById(R.id.product_name);
+        inputProductDescription = (EditText) findViewById(R.id.product_description);
+        inputProductPrice = (EditText) findViewById(R.id.product_price);
 
         /* acceder au gallery */
         inputProductImage.setOnClickListener(new View.OnClickListener() {
@@ -115,15 +119,6 @@ public class AdminAddNewProductActivity extends AppCompatActivity {
         }
     }
 
-    private void init(){
-        addNewProductButton = (Button) findViewById(R.id.add_new_product);
-        inputProductImage = (ImageView) findViewById(R.id.select_product_image);
-        inputProductName = (EditText) findViewById(R.id.product_name);
-        inputProductDescription = (EditText) findViewById(R.id.product_description);
-        inputProductPrice = (EditText) findViewById(R.id.product_price);
-    }
-
-
 
     private void validateProductData() {
         productName = inputProductName.getText().toString();
@@ -161,7 +156,8 @@ public class AdminAddNewProductActivity extends AppCompatActivity {
         SimpleDateFormat currentTime = new SimpleDateFormat("HH:mm:ss a");
         saveCurrentTime = currentTime.format(calendar.getTime());
 
-        productRandomKey = saveCurrentDate + saveCurrentTime;
+        productRandomKey = (saveCurrentDate + saveCurrentTime).replace('.', ' ');
+        //Log.d("productRandomKey: ", productRandomKey);
 
         final StorageReference filePath = productStorageReference.child(imageURI.getLastPathSegment() + productRandomKey+".jpg");
         final UploadTask uploadTask = filePath.putFile(imageURI);
