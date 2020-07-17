@@ -12,7 +12,7 @@ import ziz.org.ecommerce.R;
 
 public class ProductViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
-    /** le champ nom du produit */
+    /** le nom du produit */
     public TextView txtProductName;
     /** la description de produit */
     public TextView txtProductDesciption;
@@ -20,16 +20,15 @@ public class ProductViewHolder extends RecyclerView.ViewHolder implements View.O
     public TextView txtProductPrice;
     /** l'image du produit */
     public ImageView imageView;
+
     public ItemClickListner listner;
 
     public ProductViewHolder(@NonNull View itemView) {
         super(itemView);
-
         imageView = (ImageView) itemView.findViewById(R.id.product_image);
         txtProductName = (TextView) itemView.findViewById(R.id.product_name);
         txtProductDesciption = (TextView) itemView.findViewById(R.id.product_description);
         txtProductPrice = (TextView) itemView.findViewById(R.id.product_price);
-
     }
 
     public void setItemClickListner(ItemClickListner listner)

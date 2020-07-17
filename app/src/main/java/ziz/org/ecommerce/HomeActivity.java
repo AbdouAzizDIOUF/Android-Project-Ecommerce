@@ -98,6 +98,7 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
     protected void onStart()
     {
         super.onStart();
+
         FirebaseRecyclerOptions <Products> options = new FirebaseRecyclerOptions.Builder<Products>()
                 .setQuery(productRef, Products.class)
                 .build();
@@ -180,11 +181,15 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
             toolbar.setTitle("Categories");
         }else if (id == R.id.nav_settings)
         {
-            toolbar.setTitle("Settings");
+            Intent intent = new Intent(HomeActivity.this, SettingsActivity.class);
+            startActivity(intent);
+            //toolbar.setTitle("Settings");
+
         }else if (id == R.id.nav_logout)
         {
             Intent intent = new Intent(HomeActivity.this, MainActivity.class);
             intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+            Paper.book().destroy();
             startActivity(intent);
             finish();
         }

@@ -36,4 +36,9 @@
     <string name="close">close</string>
     <string name="user_name">user name</string>
     <string name="product_quantity">Product Quantity</string>
+    <string name="update">Update</string>
+    <string name="change_profile">Change Profile</string>
+    <string name="full_name">Full Name...</string>
+    <string name="address">Address...</string>
+    <string name="set_security_questions">Set Security Questions</string>
 </resources>
