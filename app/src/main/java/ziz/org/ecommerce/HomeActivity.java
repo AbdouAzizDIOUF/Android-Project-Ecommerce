@@ -87,6 +87,11 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
         CircleImageView profilImageView = headerView.findViewById(R.id.user_profile_image);
 
         userNameTextView.setText(Prevalent.currentOnLineUser.getName());
+       /* if (Prevalent.currentOnLineUser.getImage()==null){
+            //profilImageView.setImageResource(R.drawable.profile);
+            //profilImageView.getCircleBackgroundColor();
+        }*/
+        Picasso.get().load(Prevalent.currentOnLineUser.getImage()).placeholder(R.drawable.profile).into(profilImageView);
 
         recyclerView = findViewById(R.id.recycler_menu);
         recyclerView.setHasFixedSize(true);
@@ -172,13 +177,10 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
         int id = item.getItemId();
         if (id == R.id.nav_cart)
         {
-            toolbar.setTitle("Cart");
         }else if (id == R.id.nav_orders)
         {
-            toolbar.setTitle("Orders");
         }else if (id == R.id.nav_categories)
         {
-            toolbar.setTitle("Categories");
         }else if (id == R.id.nav_settings)
         {
             Intent intent = new Intent(HomeActivity.this, SettingsActivity.class);

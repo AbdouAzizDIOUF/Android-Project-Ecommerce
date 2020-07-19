@@ -10,4 +10,20 @@ public class Users {
     private String name;
     private String phone;
     private String password;
+    private String image;
+    private String addresse;
+
+    public Users(String name, String phone, String image, String addresse) {
+        this.name = name;
+        this.phone = phone;
+        this.image = image;
+        this.addresse = addresse;
+    }
+
+    public Users(String name, String phone, String addresse) {
+        this.name = name;
+        this.phone = phone;
+        this.image = image;
+        this.addresse = addresse;
+    }
 }
