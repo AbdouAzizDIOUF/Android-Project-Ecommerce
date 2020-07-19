@@ -12,14 +12,14 @@
         android:layout_width="match_parent"
         android:layout_height="260dp"
         android:scaleType="centerCrop"
-        />
+        android:contentDescription="@string/todo" />
 
     <TextView
         android:id="@+id/product_name_details"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/product_image_details"
-        android:text="Product Name"
+        android:text="@string/product_name"
         android:textColor="@android:color/black"
         android:textStyle="bold"
         android:textSize="18sp"
@@ -32,7 +32,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/product_name_details"
-        android:text="Product Description"
+        android:text="@string/product_description"
         android:textColor="@android:color/black"
         android:textStyle="bold"
         android:textSize="16sp"
@@ -45,7 +45,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/product_description_details"
-        android:text="Product Price"
+        android:text="@string/product_price"
         android:textColor="@android:color/black"
         android:textStyle="bold"
         android:textSize="18sp"
@@ -78,9 +78,9 @@
         android:background="@color/colorPrimaryDark"
         android:layout_margin="15dp"
         android:layout_alignParentBottom="true"
-        android:text="Add to Cart"
+        android:text="@string/add_to_cart"
         android:textColor="@android:color/white"
-        android:textSize="18dp"
+        android:textSize="18sp"
         />
 
 </RelativeLayout>

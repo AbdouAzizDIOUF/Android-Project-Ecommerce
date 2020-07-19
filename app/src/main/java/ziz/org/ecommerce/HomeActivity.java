@@ -87,10 +87,6 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
         CircleImageView profilImageView = headerView.findViewById(R.id.user_profile_image);
 
         userNameTextView.setText(Prevalent.currentOnLineUser.getName());
-       /* if (Prevalent.currentOnLineUser.getImage()==null){
-            //profilImageView.setImageResource(R.drawable.profile);
-            //profilImageView.getCircleBackgroundColor();
-        }*/
         Picasso.get().load(Prevalent.currentOnLineUser.getImage()).placeholder(R.drawable.profile).into(profilImageView);
 
         recyclerView = findViewById(R.id.recycler_menu);
@@ -108,15 +104,23 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
                 .setQuery(productRef, Products.class)
                 .build();
 
-        FirebaseRecyclerAdapter<Products, ProductViewHolder> adapter =
-                new FirebaseRecyclerAdapter<Products, ProductViewHolder>(options) {
+        FirebaseRecyclerAdapter<Products, ProductViewHolder> adapter = new FirebaseRecyclerAdapter<Products, ProductViewHolder>(options) {
             @SuppressLint("SetTextI18n")
             @Override
-            protected void onBindViewHolder(@NonNull ProductViewHolder holder, int i, @NonNull Products model) {
+            protected void onBindViewHolder(@NonNull ProductViewHolder holder, int i, @NonNull final Products model) {
                 holder.txtProductName.setText(model.getPname());
                 holder.txtProductDesciption.setText(model.getDescription());
                 holder.txtProductPrice.setText("Price : "+ model.getPrice() + "$");
                 Picasso.get().load(model.getImage()).into(holder.imageView);
+
+                holder.itemView.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        Intent intent = new Intent(HomeActivity.this, ProductDetailsActivity.class);
+                        intent.putExtra("pid", model.getPid());
+                        startActivity(intent);
+                    }
+                });
             }
 
             @NonNull
