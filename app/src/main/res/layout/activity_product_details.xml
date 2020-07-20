@@ -69,8 +69,6 @@
         >
     </com.cepheuen.elegantnumberbutton.view.ElegantNumberButton>
 
-
-
     <Button
         android:id="@+id/pd_add_to_cart_button"
         android:layout_width="match_parent"

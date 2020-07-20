@@ -46,9 +46,7 @@ public class AdminAddNewProductActivity extends AppCompatActivity {
     private String downloadImageUri;
 
     private ImageView inputProductImage;
-    private EditText inputProductName;
-    private EditText inputProductDescription;
-    private EditText inputProductPrice;
+    private EditText inputProductName, inputProductDescription, inputProductPrice;
     private Button addNewProductButton;
 
     private StorageReference productStorageReference;
@@ -199,7 +197,7 @@ public class AdminAddNewProductActivity extends AppCompatActivity {
     }
 
     /***
-     * Sauvegarde les information d'un produit a la base de donnees
+     * Sauvegarde les informations d'un produit a la base de donnees
      */
     private void saveProductInfoToDatabase() {
         HashMap<String, Object> productMap = new HashMap<>();
@@ -210,22 +208,23 @@ public class AdminAddNewProductActivity extends AppCompatActivity {
         productMap.put("image", downloadImageUri);
         productMap.put("price", productPrice);
         productMap.put("pname", productName);
+        productMap.put("category", categoryName);
 
         productDatabaseReference.child(productRandomKey).updateChildren(productMap)
-                .addOnCompleteListener(new OnCompleteListener<Void>() {
-                    @Override
-                    public void onComplete(@NonNull Task<Void> task) {
-                        if (task.isSuccessful()){
-                            Intent intent = new Intent(AdminAddNewProductActivity.this, AdminCategoryActivity.class);
-                            startActivity(intent);
-                            progressBar.dismiss();
-                            Toast.makeText(AdminAddNewProductActivity.this, "Product added successfully .....", Toast.LENGTH_SHORT).show();
-                        }else {
-                            progressBar.dismiss();
-                            String message = task.getException().toString();
-                            Toast.makeText(AdminAddNewProductActivity.this, "Error: "+message, Toast.LENGTH_SHORT).show();
-                        }
+            .addOnCompleteListener(new OnCompleteListener<Void>() {
+                @Override
+                public void onComplete(@NonNull Task<Void> task) {
+                    if (task.isSuccessful()){
+                        Intent intent = new Intent(AdminAddNewProductActivity.this, AdminCategoryActivity.class);
+                        startActivity(intent);
+                        progressBar.dismiss();
+                        Toast.makeText(AdminAddNewProductActivity.this, "Product added successfully .....", Toast.LENGTH_SHORT).show();
+                    }else {
+                        progressBar.dismiss();
+                        String message = task.getException().toString();
+                        Toast.makeText(AdminAddNewProductActivity.this, "Error: "+message, Toast.LENGTH_SHORT).show();
                     }
-                });
+                }
+            });
     }
 }

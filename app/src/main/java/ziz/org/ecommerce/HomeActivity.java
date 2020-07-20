@@ -99,12 +99,20 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
     protected void onStart()
     {
         super.onStart();
-
         FirebaseRecyclerOptions <Products> options = new FirebaseRecyclerOptions.Builder<Products>()
                 .setQuery(productRef, Products.class)
                 .build();
 
+
         FirebaseRecyclerAdapter<Products, ProductViewHolder> adapter = new FirebaseRecyclerAdapter<Products, ProductViewHolder>(options) {
+
+            @NonNull
+            @Override
+            public ProductViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+                View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.product_items_layout, parent, false);
+                return new ProductViewHolder(view);
+            }
+
             @SuppressLint("SetTextI18n")
             @Override
             protected void onBindViewHolder(@NonNull ProductViewHolder holder, int i, @NonNull final Products model) {
@@ -121,15 +129,6 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
                         startActivity(intent);
                     }
                 });
-            }
-
-            @NonNull
-            @Override
-            public ProductViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-                View view = LayoutInflater.from(parent.getContext())
-                        .inflate(R.layout.product_items_layout, parent, false);
-
-                return new ProductViewHolder(view);
             }
         };
 
